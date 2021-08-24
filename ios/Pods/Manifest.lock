@@ -185,6 +185,11 @@ PODS:
   - React-jsinspector (0.64.2-2)
   - react-native-safe-area-context (3.3.0):
     - React-Core
+  - react-native-video (5.1.1):
+    - React-Core
+    - react-native-video/Video (= 5.1.1)
+  - react-native-video/Video (5.1.1):
+    - React-Core
   - React-perflogger (0.64.2-2)
   - React-RCTAnimation (0.64.2-2):
     - FBReactNativeSpec (= 0.64.2-2)
@@ -262,6 +267,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-video (from `../node_modules/react-native-video`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -311,6 +317,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTAnimation:
@@ -338,7 +346,7 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 7fd7485ebdd1572a8faf2a24509ed2c37f8db77f
-  FBReactNativeSpec: 247ffea016618c984b560f2349355d2b101bc019
+  FBReactNativeSpec: adc3d895149ffaa1b87cabd11a4b15993721bd56
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 587385d66e6bbb5632ade820568adf71edb60545
@@ -352,6 +360,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 74dd9b564b4f87f7835ebe729f23bb97d281bee1
   React-jsinspector: f49fa9d09ea327d0f0bdd268fd0925db58d19951
   react-native-safe-area-context: 61c8c484a3a9e7d1fda19f7b1794b35bbfd2262a
+  react-native-video: 0bb76b6d6b77da3009611586c7dbf817b947f30e
   React-perflogger: 2f5ca2592cb8c2dce248f171c9193abad44ad08d
   React-RCTAnimation: fcecb04903a27253a40c5df81b142f2a82c37380
   React-RCTBlob: 2af9d951f742821632f53964c77a8d98f0a2be37
@@ -366,4 +375,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 18254530dae0ceae1bc37123ba890a645b0ef59c
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1

@@ -1,30 +1,15 @@
 import React from 'react';
-import type {Node} from 'react';
-import Style from './styles/style';
 import Content from './components/Content';
 import ReactNative, {
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
-
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-
+const App = () => {
   return (
-
-      <View style={styles.app}>
-        <Content />
-      </View>
-
+    <View style={styles.app}>
+      <Content />
+    </View>
   );
 };
 
@@ -34,6 +19,7 @@ const styles = StyleSheet.create({
     height: 1080,
     flex: 1,
     flexDirection: 'row',
+    backgroundColor: '#161819',
   }
 });
 
