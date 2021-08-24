@@ -11,7 +11,7 @@ const Content = () => {
   }
 
   return (
-    <View>
+    <View style={styles.navigator}>
       { homeVisible ? 
         <Home changeContent={changeContent}/>:
         <Player changeContent={changeContent}/>

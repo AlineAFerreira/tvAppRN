@@ -1,4 +1,5 @@
 import React from 'react';
+import Menu from './components/Menu';
 import Content from './components/Content';
 import ReactNative, {
   StyleSheet,
@@ -8,6 +9,7 @@ import ReactNative, {
 const App = () => {
   return (
     <View style={styles.app}>
+      <Menu />
       <Content />
     </View>
   );
