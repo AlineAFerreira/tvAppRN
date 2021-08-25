@@ -10,13 +10,11 @@ const FocusableHighlight = forwardRef((props, ref) => {
       {...props}
       ref={ref}
       onPress={(event) => {
-        console.log('Press1: ' + props.nativeID);
         if (props.onPress) {
           props.onPress(false);
         }
       }}
       onFocus={(event) => {
-        console.log('focus: ' + props.nativeID);
         setFocused(true);
         if (props.onFocus) {
           props.onFocus(event);
@@ -33,6 +31,7 @@ const FocusableHighlight = forwardRef((props, ref) => {
         focused && {
           backgroundColor: props.underlayColor,
           opacity: props.activeOpacity,
+          borderColor: '#FFF'
         },
         focused && props.styleFocused,
         pressed && props.stylePressed,

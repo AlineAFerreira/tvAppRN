@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 50
   },
   logo: {
     width: Style.px(150),
@@ -53,14 +54,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   menu: {
-    width: Style.px(400),
+    width: Style.px(600),
     height: Style.px(800),
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   menuItem: {
-    width: Style.px(300),
+    width: Style.px(500),
     height: Style.px(90),
     margin: Style.px(10),
     backgroundColor: Style.buttonUnfocusedColor,

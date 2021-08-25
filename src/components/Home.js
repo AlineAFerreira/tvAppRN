@@ -1,269 +1,44 @@
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef} from 'react';
+import _ from 'lodash';
 import {
   StyleSheet,
   View,
-  Image,
   ScrollView,
   SectionList,
   Text,
+  Image,
   Platform,
   findNodeHandle,
-  ProgressViewIOSComponent,
 } from 'react-native';
 import Style from '../styles/style';
 import FocusableHighlight from './focusableHighlight';
 
 // const SECTIONS = 15;
-// const SECTIONS = ['Novidades da Semana', 'Filmes de Ação', 'Em Alta', 'Recomendados para você', 'Conteúdos exclusivos', 'Filmes para as crianças'];
+const SECTIONS = ['Novidades da Semana', 'Filmes de Ação', 'Em Alta', 'Recomendados para você', 'Conteúdos exclusivos', 'Filmes para as crianças'];
 const SECTIONS_ROWS = 1;
-const SECTIONS = [
-  { 
-    name: 'Novidades da Semana',
-    items: [
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover0.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover1.jpeg')
-      },
-      {
-        title: 'Kong fu',
-        cover: require('../assets/images/cover2.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover3.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover4.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover5.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover6.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover7.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover8.jpeg')
-      }
-    ]
-  },
-  { 
-    name: 'Filmes de Ação',
-    items: [
-      {
-        title: 'Kong fu',
-        cover: require('../assets/images/cover9.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover10.jpeg')
-      },
-      {
-        title: 'Kong fu',
-        cover: require('../assets/images/cover11.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover12.jpeg')
-      },      {
-        title: 'Kong fu',
-        cover: require('../assets/images/cover13.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover14.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover15.jpeg')
-      },      {
-        title: 'Kong fu',
-        cover: require('../assets/images/cover16.jpeg')
-      },
-      {
-        title: 'Rapunzel',
-        cover: require('../assets/images/cover17.jpeg')
-      }
-    ]
-  },
-  { 
-    name: 'Em Alta',
-    items: [
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover18.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover19.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover20.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover21.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover22.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover23.jpeg')
-      },{
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover24.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover25.jpeg')
-      }
-    ]
-  },
-  { 
-    name: 'Recomendados para você',
-    items: [
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover26.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover27.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover28.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover29.jpeg')
-      },{
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover30.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover31.jpeg')
-      },{
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover32.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover33.jpeg')
-      },{
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover34.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover35.jpeg')
-      }
-    ]
-  },
-  { 
-    name: 'Conteúdos exclusivos',
-    items: [
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover36.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover37.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover38.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover39.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover40.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover41.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover42.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover43.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover44.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover45.jpeg')
-      }
-    ]
-  },
-  { 
-    name: 'Filmes para as crianças',
-    items: [
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover46.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover47.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover48.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover49.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover50.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover51.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover52.jpeg')
-      },
-      {
-        title: 'JiuJitsu',
-        cover: require('../assets/images/cover53.jpeg')
-      },
-      {
-        title: 'The Good Doctor',
-        cover: require('../assets/images/cover54.jpeg')
-      }
-    ] 
-  }
+const ITEMS = 15;
+
+const ARRAY_IMAGES = [
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWYyYTA3N2ExOWJmMzEwMDA4MWI5MTg5_11032_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/dGhpc193YXlfdXBfc2VyaWU_11032_COVER_VERTICAL_300x450.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWEyYTg1NmU4Y2U4OGQwMDAxODRhYjE3_11001_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWEyZTk1ZmE4MWQ0ZTMwMDAxMmMyOTQ2_11001_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWNlYmQyZjAxZGFmM2E4MTE1ODFjNjU1X3Nlcmll_11001_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWU5OWE2MGM5NDY2MTgwNmYyMjEyMTJk_11032_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWEyZTk1ZjMwNGI3YTMwMDAxNWU2NWVh_11001_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWU5OWE2MGM5NDY2MTgwNmYyMjEyMTJk_11032_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NjExNTM0NTVmMWI0MDIwMDBkMDkyYjI5_11032_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/c3RhdGlvbl8xOV9zZXJpZQ_11032_COVER_VERTICAL_300x450.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/ZGVzYWZpb19zb2JfZm9nb19zZXJpZQ_11032_COVER_VERTICAL_300x450.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWE1MzBlMGRiM2Y4N2UwMDAxZTBjOGJk_11001_COVER_VERTICAL_800x1200.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWE3NTU0OWE2NDRlMTEwMDAxZDcyNzVm_11032_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NjAyMzQwZGY0OWFjZjcwMDA4YjI4MDJh_11032_COVER_VERTICAL_1000x1500.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWFmZTJhMmUwYTY0OWUzZDc0ZWRkN2Ix_11032_COVER_VERTICAL_800x1200.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWJhYTE4YmUyYWRlNDM4YmM1M2UyNWM2_11032_COVER_VERTICAL_1280x1931.jpeg',
+  'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWQyMTg2Nzc3YmQ1OWRhYjkyOTQ5ZTlj_11032_COVER_VERTICAL_1000x1500.jpeg'
 ];
 
-const Home = (props) => {
+const SectionListDemo = (props) => {
   const sectionListRef = useRef(null);
   const rowRefs = useRef([]);
 
@@ -321,13 +96,17 @@ const Home = (props) => {
     }
   }
 
+  function urlPaths() {
+    return _.sample(ARRAY_IMAGES);
+  }
+
   function showItems(section, row) {
-    //const items = Array.from(Array(ITEMS).keys());
-    return SECTIONS[section].items.map((item, index) => {
+    const items = Array.from(Array(ITEMS).keys());
+    return items.map((item) => {
       const key = 'sectionlist_item_' + section + '.' + row + '.' + item;
       return (
         <FocusableHighlight
-          onPress={() => { 
+          onPress={() => {
             props.changeContent(false);
           }}
           onFocus={(e) => {
@@ -337,9 +116,10 @@ const Home = (props) => {
           style={styles.rowItem}
           nativeID={key}
           key={key}>
-          <Image style={styles.rowItemImage} source={item.cover} />
-          {/* <Text style={styles.text}>{item.title}</Text> */}
-
+          {/* <Text style={styles.text}>{section + '.' + item}</Text> */}
+          <Image style={styles.rowItemImage} source={{
+          uri: urlPaths(),
+        }} />
         </FocusableHighlight>
       );
     });
@@ -384,7 +164,8 @@ const Home = (props) => {
         rows.push({section: i, row: j});
       }
       sections.push({
-        title: SECTIONS[i].name,
+        title: SECTIONS[i]
+        ,
         data: rows,
       });
     }
@@ -393,42 +174,51 @@ const Home = (props) => {
 
   // Render
   return (
-    <View style={Style.styles.content}>
-      <View style={styles.headerHome}></View>
-      <SectionList
-        ref={sectionListRef}
-        style={styles.rows}
-        nativeID={'sectionlist'}
-        sections={getSections()}
-        renderItem={showRow}
-        renderSectionHeader={renderSectionHeader}
-        keyExtractor={(row) => row.row}
-        showsVerticalScrollIndicator={false}
-      />
+    <View style={Style.styles.right}>
+      <View style={Style.styles.content}>
+        <Text style={styles.headerText}> { 'Home' }</Text>
+        <SectionList
+          ref={sectionListRef}
+          style={styles.rows}
+          nativeID={'sectionlist'}
+          sections={getSections()}
+          renderItem={showRow}
+          renderSectionHeader={renderSectionHeader}
+          keyExtractor={(row) => row.row}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  headerHome: {
-    height: Style.px(50),
+  headerText: {
+    fontSize: Style.px(60),
+    textAlign: 'left', 
+    alignSelf: 'stretch',
+    color: '#FFF'
   },
   rows: {
-    height: Style.px(780),
+    width: Style.px(2850),
+    height: Style.px(1000),
+    flex: 1
   },
   row: {
     width: '100%',
-    height: Style.px(620),
+    height: Style.px(510),
   },
   rowItem: {
-    width: Style.px(450),
-    height: Style.px(600),
-    margin: Style.px(15),
+    width: Style.px(300),
+    height: Style.px(500),
+    margin: Style.px(10),
     backgroundColor: Style.buttonUnfocusedColor,
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderRadius: 5,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5
   },
   rowItemImage: {
     width: '100%',
@@ -436,7 +226,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     marginTop: Style.px(80),
-    marginLeft: Style.px(30),
+    marginLeft: Style.px(10),
     color: 'white',
     fontSize: Style.px(60),
   },
@@ -445,4 +235,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default SectionListDemo;

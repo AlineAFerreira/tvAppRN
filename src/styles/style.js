@@ -39,7 +39,7 @@ Style.styles = StyleSheet.create({
   },
   content: {
     width: 1920,
-    height: 1080,
+    height: 1000,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
