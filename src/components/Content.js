@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ProgressViewIOSComponent, StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Home from './Home';
 import Player from './Player';
 import Style from '../styles/style';
@@ -16,7 +16,7 @@ const Content = props => {
   return (
     <View style={styles.navigator}>
       { homeVisible ? 
-        <Home changeContent={changeContent}/>:
+        <Home page={props.page} changeContent={changeContent}/>:
         <Player changeContent={changeContent}/>
       }
     </View>
@@ -27,7 +27,6 @@ export default Content;
 
 const styles = StyleSheet.create({
   navigator: {
-    width: 1950,
-    backgroundColor: '#161819'
+    width: 1520,
   }
 });

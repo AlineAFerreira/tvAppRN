@@ -246,6 +246,8 @@ PODS:
     - React-cxxreact (= 0.64.2-2)
     - React-jsi (= 0.64.2-2)
     - React-perflogger (= 0.64.2-2)
+  - RNVectorIcons (8.1.0):
+    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -278,6 +280,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -339,6 +342,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -371,6 +376,7 @@ SPEC CHECKSUMS:
   React-RCTText: aa98f3eb2a43c9b0fd7ea00c5d97409f8493636c
   React-runtimeexecutor: c609425af7a4fd1da7d549e81614487f702e5025
   ReactCommon: fe50c49bc90e5d242845cb534f88164868cba242
+  RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   Yoga: e6fb09105c0264e3ad22605d6b6fa2776e169518
 
 PODFILE CHECKSUM: 18254530dae0ceae1bc37123ba890a645b0ef59c

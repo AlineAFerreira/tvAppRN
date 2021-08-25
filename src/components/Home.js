@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useRef } from 'react';
 import _ from 'lodash';
 import {
   StyleSheet,
@@ -13,7 +13,6 @@ import {
 import Style from '../styles/style';
 import FocusableHighlight from './focusableHighlight';
 
-// const SECTIONS = 15;
 const SECTIONS = ['Novidades da Semana', 'Filmes de Ação', 'Em Alta', 'Recomendados para você', 'Conteúdos exclusivos', 'Filmes para as crianças'];
 const SECTIONS_ROWS = 1;
 const ITEMS = 15;
@@ -37,6 +36,15 @@ const ARRAY_IMAGES = [
   'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWJhYTE4YmUyYWRlNDM4YmM1M2UyNWM2_11032_COVER_VERTICAL_1280x1931.jpeg',
   'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWQyMTg2Nzc3YmQ1OWRhYjkyOTQ5ZTlj_11032_COVER_VERTICAL_1000x1500.jpeg'
 ];
+
+const ARRAY_HIGHLIGTHS = [
+  'https://img.comunidades.net/fil/filmesdeherois/batman_cavaleiro_trevas_2008_02.jpg',
+  'https://www.etonline.com/sites/default/files/images/2019-08/BLACKWIDOW_LOGO_FINISH_LAYERED.jpg',
+  'https://wallpaperaccess.com/full/1512312.jpg',
+  'https://hqrock.files.wordpress.com/2011/12/poster-december-01.jpg',
+  'https://i.redd.it/ws41k3syqmq31.jpg',
+  'https://i.redd.it/prrimgax5fmx.jpg'
+]
 
 const SectionListDemo = (props) => {
   const sectionListRef = useRef(null);
@@ -96,8 +104,9 @@ const SectionListDemo = (props) => {
     }
   }
 
-  function urlPaths() {
-    return _.sample(ARRAY_IMAGES);
+  function urlPaths(num) {
+    const type = num === 1 ? ARRAY_IMAGES : ARRAY_HIGHLIGTHS;
+    return _.sample(type)
   }
 
   function showItems(section, row) {
@@ -113,13 +122,13 @@ const SectionListDemo = (props) => {
             onItemFocus(e, section, row, item);
           }}
           underlayColor={Style.buttonFocusedColor}
+          styleFocused={{borderWidth: 2, borderStyle: 'solid', borderColor:'#FFF'}}
           style={styles.rowItem}
           nativeID={key}
           key={key}>
           {/* <Text style={styles.text}>{section + '.' + item}</Text> */}
           <Image style={styles.rowItemImage} source={{
-          uri: urlPaths(),
-        }} />
+          uri: urlPaths(1)}} />
         </FocusableHighlight>
       );
     });
@@ -174,9 +183,19 @@ const SectionListDemo = (props) => {
 
   // Render
   return (
-    <View style={Style.styles.right}>
-      <View style={Style.styles.content}>
-        <Text style={styles.headerText}> { 'Home' }</Text>
+    <View style={styles.right}>
+      <View style={styles.content}>
+        <Text style={styles.headerText}> { props.page }</Text>
+        <View style={styles.highlights}>
+          <FocusableHighlight
+            style={styles.highlightItem}
+            onPress={()=>{ props.changeContent(false); }}>
+            <Image 
+              style={styles.imageHighlight}
+              source={{ uri: urlPaths(2)}} 
+            />
+          </FocusableHighlight>
+        </View>
         <SectionList
           ref={sectionListRef}
           style={styles.rows}
@@ -193,16 +212,47 @@ const SectionListDemo = (props) => {
 };
 
 const styles = StyleSheet.create({
+  right: {
+    width: 1920,
+    height: 1080,  
+    backgroundColor: '#161819'  
+  },
+  content: {
+    height: '100%',
+    marginLeft: 30
+  },
   headerText: {
-    fontSize: Style.px(60),
+    fontSize: Style.px(70),
     textAlign: 'left', 
     alignSelf: 'stretch',
-    color: '#FFF'
+    color: '#FFF',
+    marginTop: 30,
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
+  },
+  highlights: {
+    width: 1620,
+    height: 200,
+    flex: 1,
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    marginTop: 20
+  },
+  highlightItem: {
+    width: '100%',
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderRadius: 8
+  },
+  imageHighlight: {
+    height: '100%',
+    borderRadius: 8
   },
   rows: {
-    width: Style.px(2850),
+    width: Style.px(3250),
     height: Style.px(1000),
-    flex: 1
+    flex: 1,
   },
   row: {
     width: '100%',

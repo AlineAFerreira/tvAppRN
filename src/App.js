@@ -8,13 +8,14 @@ import ReactNative, {
 } from 'react-native';
 
 const App = () => {
-  const [ menuHide, setMenuHide ] = useState(false)
+  const [ menuHide, setMenuHide ] = useState(false);
+  const [ page, setPage ] = useState('Home')
   return (
     <View style={styles.app}>
       { !menuHide &&
-        <Menu />
+        <Menu changePage={setPage} />
       }
-      <Content hideMenu={setMenuHide}/>
+      <Content page={page} hideMenu={setMenuHide}/>
     </View>
   );
 };
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     height: Style.px(1080),
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#161819',
+    backgroundColor: '#161819'
   }
 });
 

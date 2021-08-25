@@ -36,8 +36,7 @@ const FocusableHighlight = forwardRef((props, ref) => {
         focused && props.styleFocused,
         pressed && props.stylePressed,
       ]}>
-      {props.children || <View />}
-      
+        {props.children || <View />}
     </TouchableHighlight>
   );
 });

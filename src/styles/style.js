@@ -23,9 +23,8 @@ const Style = {
 Style.styles = StyleSheet.create({
   right: {
     backgroundColor: Style.backgroundColor,
-    width: 1920,
+    width: Style.px(1920),
     height: 1080,
-
   },
   header: {
     width: Style.px(1920),
@@ -38,7 +37,7 @@ Style.styles = StyleSheet.create({
     color: 'white',
   },
   content: {
-    width: 1920,
+    width: '100%',
     height: 1000,
     flex: 1,
     flexDirection: 'column',
