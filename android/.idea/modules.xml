@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/appTvOs.iml" filepath="$PROJECT_DIR$/.idea/modules/appTvOs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/appTvOs.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/appTvOs.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/72282889/appTvOs.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/72282889/appTvOs.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1933318454/appTvOs.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/1933318454/appTvOs.react-native-vector-icons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-216841259/appTvOs.react-native-video.iml" filepath="$PROJECT_DIR$/.idea/modules/-216841259/appTvOs.react-native-video.iml" />
+    </modules>
+  </component>
+</project>

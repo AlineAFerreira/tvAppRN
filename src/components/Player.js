@@ -2,44 +2,49 @@ import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
-import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-player';
 import Style from '../styles/style'
 import FocusableHighlight from './focusableHighlight';
-import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
-import IonIcon from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Player = props => {
   const [isPaused, setPaused ] = useState(false);
+  console.log('isPaused', isPaused)
   return (
   <View style={styles.playerContainer}>
-    <Video 
-      source={require('../assets/video/sample.mov')} 
-      ref={(ref) => {
-        this.player = ref
-      }}      
-      autoplay={true}   
-      paused={isPaused}   
-      controls={true}                          
-      onBuffer={this.onBuffer}                
-      onError={this.videoError}               
-      style={styles.backgroundVideo} 
-    />
-    <View style={styles.videoControls}>
+    <VideoPlayer
+      video={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+      autoplay={true}
+      resizeMode={'contain'}
+      paused={isPaused}
+      customStyles={
+        {
+          controlIcon: {display: 'none'},
+          seekBar: {display: 'none'},
+          seekBarBackground: {backgroundColor: 'transparent'}
+        }
+      }
+      style={{
+        aspectRatio: Dimensions.get('window').width/Dimensions.get('window').height,
+      }}
+  />
+
       <FocusableHighlight
         nativeID={'back_button'}
         onPress={(e) => {
+          setPaused(false);
           props.changeContent(true);
           if (e.eventKeyAction === 0 && e.eventType === 'select') {
           }
         }}
-        style={styles.videoControl}
+        style={[styles.videoControl, styles.videoControlBack]}
         underlayColor={Style.buttonFocusedColor}>
-        <Text style={styles.videoControlText}>
-          {'Voltar '}
-        </Text>
+          <View>
+          <FontAwesome name="chevron-left" size={15} />
+          </View>
       </FocusableHighlight>
       <FocusableHighlight
         nativeID={'play_pause_button'}
@@ -54,10 +59,10 @@ const Player = props => {
         hasTVPreferredFocus={true}
         underlayColor={Style.buttonFocusedColor}>
         <Text style={styles.videoControlText}>
-          {isPaused ? 'Play' : 'Pause'}
+          {isPaused ? <FontAwesome name="play" size={15} /> : <FontAwesome name="pause" size={15} />}
         </Text>
       </FocusableHighlight>
-    </View>
+  
   </View>
   )
 };
@@ -66,31 +71,33 @@ export default Player;
 
 const styles = StyleSheet.create({
   playerContainer: {
-    width: 1950,
+    width: Dimensions.get('window').width,
     height: 1080,
     backgroundColor: '#161819' 
   },
-  backgroundVideo: {
-    width: 1920,
-    height: 1080,
-  },
   videoControls: {
     position: 'absolute',
-    height: '100%',
+    height: Dimensions.get('window').height,
     justifyContent: 'space-between',
+
   },
   videoControlText: {
     fontSize: Style.px(50),
   },
   videoControl: {
-    width: Style.px(300),
+    width: Style.px(100),
     height: Style.px(100),
     margin: Style.px(20),
     backgroundColor: Style.buttonUnfocusedColor,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  videoControlPlay: {
     borderRadius: 50
+  },
+  videoControlBack : {
+    position: 'absolute'
+  },
+  videoControlPlay : {
+    position: 'absolute',
+    top: Dimensions.get('window').height - 120
   }
 });

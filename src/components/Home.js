@@ -15,7 +15,7 @@ import FocusableHighlight from './focusableHighlight';
 
 const SECTIONS = ['Novidades da Semana', 'Filmes de Ação', 'Em Alta', 'Recomendados para você', 'Conteúdos exclusivos', 'Filmes para as crianças'];
 const SECTIONS_ROWS = 1;
-const ITEMS = 15;
+const ITEMS = 6;
 
 const ARRAY_IMAGES = [
   'https://d37wmy56xprd2c.cloudfront.net/fit-in/170x255/NWYyYTA3N2ExOWJmMzEwMDA4MWI5MTg5_11032_COVER_VERTICAL_1000x1500.jpeg',
@@ -126,7 +126,6 @@ const SectionListDemo = (props) => {
           style={styles.rowItem}
           nativeID={key}
           key={key}>
-          {/* <Text style={styles.text}>{section + '.' + item}</Text> */}
           <Image style={styles.rowItemImage} source={{
           uri: urlPaths(1)}} />
         </FocusableHighlight>
@@ -196,9 +195,10 @@ const SectionListDemo = (props) => {
             />
           </FocusableHighlight>
         </View>
+        
         <SectionList
           ref={sectionListRef}
-          style={styles.rows}
+          
           nativeID={'sectionlist'}
           sections={getSections()}
           renderItem={showRow}
@@ -246,12 +246,12 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   imageHighlight: {
-    height: '100%',
+    height: 200,
     borderRadius: 8
   },
   rows: {
     width: Style.px(3250),
-    height: Style.px(1000),
+    height: '50%',
     flex: 1,
   },
   row: {

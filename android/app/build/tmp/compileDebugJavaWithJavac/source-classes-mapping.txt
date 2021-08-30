@@ -1,0 +1,14 @@
+com/apptvos/ReactNativeFlipper.java
+ com.apptvos.ReactNativeFlipper
+ com.apptvos.ReactNativeFlipper$1
+ com.apptvos.ReactNativeFlipper$2
+ com.apptvos.ReactNativeFlipper$2$1
+com/apptvos/MainActivity.java
+ com.apptvos.MainActivity
+com/apptvos/BuildConfig.java
+ com.apptvos.BuildConfig
+com/apptvos/MainApplication.java
+ com.apptvos.MainApplication
+ com.apptvos.MainApplication$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
