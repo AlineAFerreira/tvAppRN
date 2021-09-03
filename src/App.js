@@ -9,7 +9,7 @@ import ReactNative, {
 
 const App = () => {
   const [ menuHide, setMenuHide ] = useState(false);
-  const [ page, setPage ] = useState('Home')
+  const [ page, setPage ] = useState('Início')
   return (
     <View style={styles.app}>
       { !menuHide &&

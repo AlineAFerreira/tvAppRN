@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
-import {View, Text, Image, StyleSheet, ProgressViewIOSComponent} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, ProgressViewIOSComponent} from 'react-native';
 import Style from '../styles/style';
 import FocusableHighlight from './focusableHighlight';
 
 const Menu = props => {
   function showMenu() {
-    const items = ['Home', 'Filmes', 'Séries', 'Canais', 'Infantil'];
+    const items = ['Início', 'Filmes', 'Séries', 'Canais', 'Infantil'];
     return items.map((item) => {
       const key = 'menu_' + item.toLowerCase();
       const route = item.toLowerCase();
